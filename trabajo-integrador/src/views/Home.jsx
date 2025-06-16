@@ -1,15 +1,18 @@
-import { useContext, useState } from 'react';
-import { ProductContext } from '../ProductContext';
+import { useSelector, useDispatch } from 'react-redux';
+import { useState } from 'react';
+import { toggleFavorite } from '../productsSlice';
 import { Link } from 'react-router-dom';
-import Navbar from '../components/NavBar'; 
+import Navbar from '../components/NavBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Home = () => {
-  const { products, favorites, toggleFavorite } = useContext(ProductContext);
+  const products = useSelector(state => state.products.items);
+  const favorites = useSelector(state => state.products.favorites);
+  const dispatch = useDispatch();
+
   const [sortOption, setSortOption] = useState("relevante");
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Filtrado y ordenamiento
   const filteredProducts = products.filter(product =>
     product.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -25,8 +28,6 @@ const Home = () => {
       <Navbar onSearchChange={setSearchTerm} />
 
       <div className="container mt-4">
-
-        {/* Ordenar por */}
         <div className="row justify-content-start mb-4">
           <div className="col-md-4">
             <div className="card shadow-sm border-0 p-3 d-flex align-items-center flex-row gap-3">
@@ -45,14 +46,13 @@ const Home = () => {
           </div>
         </div>
 
-        {/* Productos */}
         <div className="row g-3">
           {sortedProducts.map(product => (
             <div key={product.id} className="col-sm-6 col-md-4 col-lg-3">
               <div className="card h-100 border-0 rounded-4 shadow-sm">
                 {product.price < 15 && (
-  <span className="badge-oferta">¡En oferta!</span>
-)}
+                  <span className="badge-oferta">¡En oferta!</span>
+                )}
 
                 <img
                   src={product.image}
@@ -81,16 +81,16 @@ const Home = () => {
                     >
                       🔍
                     </Link>
-                    {/*
+
                     <button
                       className={`btn ${favorites.includes(product.id)
                         ? 'btn-outline-danger btn-favorite-pop'
                         : 'btn-outline-secondary'} btn-circle`}
-                      onClick={() => toggleFavorite(product.id)}
+                      onClick={() => dispatch(toggleFavorite(product.id))}
                       title={favorites.includes(product.id) ? 'Quitar de favoritos' : 'Agregar a favoritos'}
                     >
                       {favorites.includes(product.id) ? '❤️' : '🤍'}
-                    </button> */}
+                    </button>
                   </div>
                 </div>
               </div>

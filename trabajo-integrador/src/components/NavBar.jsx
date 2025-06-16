@@ -9,7 +9,7 @@ const Navbar = ({ onSearchChange }) => {
        <Link to="/" className="navbar-brand d-flex align-items-center gap-2">
   <span style={{ fontSize: '2rem' }}>🛍️</span>
   <span className="fw-bold" style={{ fontSize: '1.6rem' }}>Tienda</span>
-</Link>
+       </Link>
 
 
         
