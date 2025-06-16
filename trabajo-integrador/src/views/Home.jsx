@@ -1,0 +1,105 @@
+import { useContext, useState } from 'react';
+import { ProductContext } from '../ProductContext';
+import { Link } from 'react-router-dom';
+import Navbar from '../components/NavBar'; 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+const Home = () => {
+  const { products, favorites, toggleFavorite } = useContext(ProductContext);
+  const [sortOption, setSortOption] = useState("relevante");
+  const [searchTerm, setSearchTerm] = useState("");
+
+  // Filtrado y ordenamiento
+  const filteredProducts = products.filter(product =>
+    product.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    if (sortOption === "menorPrecio") return a.price - b.price;
+    if (sortOption === "mayorPrecio") return b.price - a.price;
+    return 0;
+  });
+
+  return (
+    <>
+      <Navbar onSearchChange={setSearchTerm} />
+
+      <div className="container mt-4">
+
+        {/* Ordenar por */}
+        <div className="row justify-content-start mb-4">
+          <div className="col-md-4">
+            <div className="card shadow-sm border-0 p-3 d-flex align-items-center flex-row gap-3">
+              <span className="fw-semibold mb-0">Ordenar por:</span>
+              <select
+                className="form-select form-select-sm"
+                value={sortOption}
+                onChange={(e) => setSortOption(e.target.value)}
+                style={{ maxWidth: '180px' }}
+              >
+                <option value="relevante">Más relevante</option>
+                <option value="menorPrecio">Menor precio</option>
+                <option value="mayorPrecio">Mayor precio</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        {/* Productos */}
+        <div className="row g-3">
+          {sortedProducts.map(product => (
+            <div key={product.id} className="col-sm-6 col-md-4 col-lg-3">
+              <div className="card h-100 border-0 rounded-4 shadow-sm">
+                {product.price < 15 && (
+  <span className="badge-oferta">¡En oferta!</span>
+)}
+
+                <img
+                  src={product.image}
+                  className="card-img-top"
+                  alt={product.title}
+                  style={{
+                    height: '250px',
+                    objectFit: 'contain',
+                    padding: '1rem',
+                  }}
+                />
+                <div className="card-body d-flex flex-column px-3 pb-3">
+                  <h6 className="fw-semibold text-truncate mb-1" style={{ fontSize: '0.95rem' }}>
+                    {product.title}
+                  </h6>
+                  <p className="text-dark fw-bold mb-1" style={{ fontSize: '1rem' }}>
+                    ${product.price.toFixed(2)}
+                  </p>
+                  <p className="text-muted small mb-3">{product.category}</p>
+
+                  <div className="mt-auto d-flex gap-2">
+                    <Link
+                      to={`/product/${product.id}`}
+                      className="btn btn-outline-primary btn-circle"
+                      title="Ver detalles"
+                    >
+                      🔍
+                    </Link>
+                    {/*
+                    <button
+                      className={`btn ${favorites.includes(product.id)
+                        ? 'btn-outline-danger btn-favorite-pop'
+                        : 'btn-outline-secondary'} btn-circle`}
+                      onClick={() => toggleFavorite(product.id)}
+                      title={favorites.includes(product.id) ? 'Quitar de favoritos' : 'Agregar a favoritos'}
+                    >
+                      {favorites.includes(product.id) ? '❤️' : '🤍'}
+                    </button> */}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default Home;
