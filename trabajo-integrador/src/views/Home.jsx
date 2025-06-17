@@ -3,6 +3,7 @@ import { ProductContext } from '../ProductContext';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/NavBar'; 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Footer} from './footer';
 
 const Home = () => {
   const { products, favorites, toggleFavorite } = useContext(ProductContext);
@@ -98,6 +99,7 @@ const Home = () => {
           ))}
         </div>
       </div>
+       <Footer></Footer>
     </>
   );
 };
