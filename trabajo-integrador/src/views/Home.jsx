@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useState } from 'react';
-import { toggleFavorite } from '../productsSlice';
+import { useEffect, useState } from 'react';
+import { toggleFavorite, fetchProducts } from '../productsSlice'; 
 import { Link } from 'react-router-dom';
 import Navbar from '../components/NavBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -9,6 +9,12 @@ const Home = () => {
   const products = useSelector(state => state.products.items);
   const favorites = useSelector(state => state.products.favorites);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (products.length === 0) {
+      dispatch(fetchProducts());
+    }
+  }, [dispatch, products.length]); 
 
   const [sortOption, setSortOption] = useState("relevante");
   const [searchTerm, setSearchTerm] = useState("");

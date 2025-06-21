@@ -19,6 +19,9 @@ const productsSlice = createSlice({
       } else {
         state.favorites.push(productId);
       }
+    },
+    addNewProduct(state, action) {
+      state.items.push(action.payload);
     }
   },
   extraReducers: (builder) => {
@@ -28,5 +31,6 @@ const productsSlice = createSlice({
   }
 });
 
-export const { toggleFavorite } = productsSlice.actions;
+export const { toggleFavorite, addNewProduct } = productsSlice.actions;
+
 export default productsSlice.reducer;
