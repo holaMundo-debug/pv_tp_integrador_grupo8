@@ -31,6 +31,8 @@ const Navbar = ({ onSearchChange }) => {
 
         
         <div className="d-flex align-items-center gap-4 fs-5">
+          <Link to="/create" title="Agregar nuevo producto"className="text-decoration-none text-success">➕</Link>
+
           <Link to="/login" title="Mi cuenta" className="text-decoration-none text-dark">👤</Link>
           <Link to="/Favorites" title="Favoritos" className="text-decoration-none text-dark">🤍</Link>
           <Link to="/cart" title="Carrito" className="text-decoration-none text-dark">🛒</Link>
