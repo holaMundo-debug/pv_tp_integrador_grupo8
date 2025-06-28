@@ -1,9 +1,8 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';             
-import store from './store';                        
-import { fetchProducts } from './productsSlice';      
+import store from './Store/store';
+import { fetchProducts } from './Store/productsSlice';    
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.css';

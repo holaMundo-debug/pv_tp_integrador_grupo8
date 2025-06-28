@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import ProductForm from "../components/ProductForm";
 import Navbar from "../components/NavBar"; 
-import { addNewProduct } from "../productsSlice";
+import { addNewProduct } from "../Store/productsSlice";
 
 const CreateProduct = () => {
   const dispatch = useDispatch();
