@@ -8,8 +8,9 @@ export const fetchProducts = createAsyncThunk("products/fetchProducts", async ()
 const productsSlice = createSlice({
   name: "products",
   initialState: {
-    items: [],
-    favorites: [],
+  items: [],
+  favorites: [],
+  loading: false,
   },
   reducers: {
     toggleFavorite(state, action) {
@@ -25,8 +26,16 @@ const productsSlice = createSlice({
     }
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchProducts.fulfilled, (state, action) => {
+  builder
+    .addCase(fetchProducts.pending, (state) => {
+      state.loading = true;
+    })
+    .addCase(fetchProducts.fulfilled, (state, action) => {
       state.items = action.payload;
+      state.loading = false;
+    })
+    .addCase(fetchProducts.rejected, (state) => {
+      state.loading = false;
     });
   }
 });

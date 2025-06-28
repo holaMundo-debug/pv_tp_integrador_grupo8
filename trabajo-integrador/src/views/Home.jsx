@@ -1,25 +1,24 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
-import { toggleFavorite, fetchProducts } from '../productsSlice'; 
-import { Link } from 'react-router-dom';
-import Navbar from '../components/NavBar';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import Navbar from "../components/NavBar";
+import { toggleFavorite, fetchProducts } from "../Store/productsSlice"; 
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const Home = () => {
-  const products = useSelector(state => state.products.items);
-  const favorites = useSelector(state => state.products.favorites);
   const dispatch = useDispatch();
+  const { items: products, favorites, loading } = useSelector(state => state.products);
 
   useEffect(() => {
     if (products.length === 0) {
       dispatch(fetchProducts());
     }
-  }, [dispatch, products.length]); 
+  }, [dispatch, products.length]);
 
   const [sortOption, setSortOption] = useState("relevante");
   const [searchTerm, setSearchTerm] = useState("");
 
-  const filteredProducts = products.filter(product =>
+  const filteredProducts = products.filter((product) =>
     product.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
@@ -42,7 +41,7 @@ const Home = () => {
                 className="form-select form-select-sm"
                 value={sortOption}
                 onChange={(e) => setSortOption(e.target.value)}
-                style={{ maxWidth: '180px' }}
+                style={{ maxWidth: "180px" }}
               >
                 <option value="relevante">Más relevante</option>
                 <option value="menorPrecio">Menor precio</option>
@@ -53,55 +52,76 @@ const Home = () => {
         </div>
 
         <div className="row g-3">
-          {sortedProducts.map(product => (
-            <div key={product.id} className="col-sm-6 col-md-4 col-lg-3">
-              <div className="card h-100 border-0 rounded-4 shadow-sm">
-                {product.price < 15 && (
-                  <span className="badge-oferta">¡En oferta!</span>
-                )}
-
-                <img
-                  src={product.image}
-                  className="card-img-top"
-                  alt={product.title}
-                  style={{
-                    height: '250px',
-                    objectFit: 'contain',
-                    padding: '1rem',
-                  }}
-                />
-                <div className="card-body d-flex flex-column px-3 pb-3">
-                  <h6 className="fw-semibold text-truncate mb-1" style={{ fontSize: '0.95rem' }}>
-                    {product.title}
-                  </h6>
-                  <p className="text-dark fw-bold mb-1" style={{ fontSize: '1rem' }}>
-                    ${product.price.toFixed(2)}
-                  </p>
-                  <p className="text-muted small mb-3">{product.category}</p>
-
-                  <div className="mt-auto d-flex gap-2">
-                    <Link
-                      to={`/product/${product.id}`}
-                      className="btn btn-outline-primary btn-circle"
-                      title="Ver detalles"
+          {loading ? (
+            <div className="col-12 text-center py-5">
+              <div className="spinner-border text-primary" role="status" />
+              <p className="mt-3 text-muted">Cargando productos...</p>
+            </div>
+          ) : sortedProducts.length === 0 ? (
+            <div className="col-12">
+              <p className="text-center text-muted fs-5">
+                ❌ No se encontraron productos que coincidan con tu búsqueda.
+              </p>
+            </div>
+          ) : (
+            sortedProducts.map((product) => (
+              <div key={product.id} className="col-sm-6 col-md-4 col-lg-3">
+                <div className="card h-100 border-0 rounded-4 shadow-lg p-2">
+                  {product.price < 15 && (
+                    <span className="badge-oferta">¡En oferta!</span>
+                  )}
+                  <img
+                    src={product.image}
+                    className="card-img-top"
+                    alt={product.title}
+                    style={{
+                      height: "250px",
+                      objectFit: "contain",
+                      padding: "1rem",
+                    }}
+                  />
+                  <div className="card-body d-flex flex-column px-3 pb-3">
+                    <h6
+                      className="fw-semibold text-truncate mb-1"
+                      style={{ fontSize: "0.95rem" }}
                     >
-                      🔍
-                    </Link>
+                      {product.title}
+                    </h6>
+                    <p className="text-dark fw-bold mb-1" style={{ fontSize: "1rem" }}>
+                      ${product.price.toFixed(2)}
+                    </p>
+                    <p className="text-muted small mb-3">{product.category}</p>
 
-                    <button
-                      className={`btn ${favorites.includes(product.id)
-                        ? 'btn-outline-danger btn-favorite-pop'
-                        : 'btn-outline-secondary'} btn-circle`}
-                      onClick={() => dispatch(toggleFavorite(product.id))}
-                      title={favorites.includes(product.id) ? 'Quitar de favoritos' : 'Agregar a favoritos'}
-                    >
-                      {favorites.includes(product.id) ? '❤️' : '🤍'}
-                    </button>
+                    <div className="mt-auto d-flex gap-2">
+                      <Link
+                        to={`/product/${product.id}`}
+                        className="btn btn-outline-primary btn-circle"
+                        title="Ver detalles"
+                      >
+                        🔍
+                      </Link>
+
+                      <button
+                        className={`btn ${
+                          favorites.includes(product.id)
+                            ? "btn-outline-danger btn-favorite-pop"
+                            : "btn-outline-secondary"
+                        } btn-circle`}
+                        onClick={() => dispatch(toggleFavorite(product.id))}
+                        title={
+                          favorites.includes(product.id)
+                            ? "Quitar de favoritos"
+                            : "Agregar a favoritos"
+                        }
+                      >
+                        {favorites.includes(product.id) ? "❤️" : "🤍"}
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
       </div>
     </>
