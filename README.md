@@ -31,12 +31,12 @@ Proyecto integrador grupal desarrollado para la materia Programación Visual.
   - Se almacenan en el estado global para compartir entre vistas
  
 - **Crear y editar producto**
-  -Formulario reutilizable (ProductForm) para alta y edición de productos
-  -Vista /create para agregar un nuevo producto desde cero
-  -Vista /editar/:id para modificar un producto ya existente con campos precargados
-  -Ingreso de título, precio, descripción, categoría y selección visual de imagen
-  -Actualización dinámica del estado global mediante Redux
-  -Confirmación visual mediante toast al completar la acción
+  - Formulario reutilizable (ProductForm) para alta y edición de productos
+  - Vista /create para agregar un nuevo producto desde cero
+  - Vista /editar/:id para modificar un producto ya existente con campos precargados
+  - Ingreso de título, precio, descripción, categoría y selección visual de imagen
+  - Actualización dinámica del estado global mediante Redux
+  - Confirmación visual mediante toast al completar la acción
 
 ---
 
