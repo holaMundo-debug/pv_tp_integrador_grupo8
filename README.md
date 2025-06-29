@@ -30,15 +30,15 @@ Proyecto integrador grupal desarrollado para la materia Programación Visual.
   - Productos traídos mediante `fetch()` desde [FakeStoreAPI](https://fakestoreapi.com/)
   - Se almacenan en el estado global para compartir entre vistas
  
-- **Crear nuevo producto**
-  - Vista /create con formulario reutilizable (ProductForm)
-  - Ingreso de título, precio, descripción, categoría
-  - Selector visual de imágenes precargadas
-  - Toast visual de confirmación tras agregar un producto
-  - Integrado con Redux para actualizar el store global dinámicamente
+- **Crear y editar producto**
+  -Formulario reutilizable (ProductForm) para alta y edición de productos
+  -Vista /create para agregar un nuevo producto desde cero
+  -Vista /editar/:id para modificar un producto ya existente con campos precargados
+  -Ingreso de título, precio, descripción, categoría y selección visual de imagen
+  -Actualización dinámica del estado global mediante Redux
+  -Confirmación visual mediante toast al completar la acción
 
 ---
-
 
 ## 🧰 Tecnologías utilizadas
 
