@@ -59,7 +59,6 @@ const ProductForm = ({ onSubmit, initialData }) => {
       </h4>
 
       <form onSubmit={handleSubmit} className="row g-4">
-        {/* Nombre y precio */}
         <div className="col-md-6">
           <label className="form-label">Nombre del producto</label>
           <input
@@ -86,7 +85,6 @@ const ProductForm = ({ onSubmit, initialData }) => {
           />
         </div>
 
-        {/* Categoría y descripción */}
         <div className="col-md-6">
           <label className="form-label">Categoría</label>
           <select
@@ -116,7 +114,7 @@ const ProductForm = ({ onSubmit, initialData }) => {
           />
         </div>
 
-        {/* Subir imagen */}
+       
         <div className="col-md-6">
           <label className="form-label">Subí una imagen desde tu dispositivo</label>
           <input
@@ -126,8 +124,7 @@ const ProductForm = ({ onSubmit, initialData }) => {
             className="form-control"
           />
         </div>
-
-        {/* Seleccionar imagen desde catálogo */}
+ 
         <div className="col-12">
           <label className="form-label fw-semibold">O seleccioná una imagen del catálogo</label>
           <div className="d-flex flex-wrap gap-3">
@@ -151,7 +148,7 @@ const ProductForm = ({ onSubmit, initialData }) => {
           </div>
         </div>
 
-        {/* Imagen seleccionada */}
+        
         {form.image && (
           <div className="col-12 mt-2">
             <p className="text-muted small mb-1">📌 Imagen seleccionada:</p>
@@ -166,10 +163,10 @@ const ProductForm = ({ onSubmit, initialData }) => {
           </div>
         )}
 
-        {/* Botón */}
+        
         <div className="col-12 text-end">
           <button type="submit" className="btn btn-success px-4">
-            {initialData ? "💾 Actualizar" : "✅ Agregar producto"}
+            {initialData ? "Actualizar" : "Agregar producto"}
           </button>
         </div>
       </form>
