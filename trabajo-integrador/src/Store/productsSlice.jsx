@@ -23,23 +23,32 @@ const productsSlice = createSlice({
     },
     addNewProduct(state, action) {
       state.items.push(action.payload);
+    },
+    updateProduct(state, action) {
+      const updated = action.payload;
+      const index = state.items.findIndex((p) => p.id === updated.id);
+      if (index !== -1) {
+        state.items[index] = updated;
+      }
     }
   },
   extraReducers: (builder) => {
-  builder
-    .addCase(fetchProducts.pending, (state) => {
-      state.loading = true;
-    })
-    .addCase(fetchProducts.fulfilled, (state, action) => {
-      state.items = action.payload;
-      state.loading = false;
-    })
-    .addCase(fetchProducts.rejected, (state) => {
-      state.loading = false;
-    });
+    builder
+      .addCase(fetchProducts.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchProducts.fulfilled, (state, action) => {
+        state.items = action.payload;
+        state.loading = false;
+      })
+      .addCase(fetchProducts.rejected, (state) => {
+        state.loading = false;
+      });
   }
 });
 
-export const { toggleFavorite, addNewProduct } = productsSlice.actions;
+
+export const { toggleFavorite, addNewProduct, updateProduct } = productsSlice.actions;
+
 
 export default productsSlice.reducer;

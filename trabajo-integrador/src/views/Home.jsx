@@ -81,10 +81,7 @@ const Home = () => {
                     }}
                   />
                   <div className="card-body d-flex flex-column px-3 pb-3">
-                    <h6
-                      className="fw-semibold text-truncate mb-1"
-                      style={{ fontSize: "0.95rem" }}
-                    >
+                    <h6 className="fw-semibold text-truncate mb-1" style={{ fontSize: "0.95rem" }}>
                       {product.title}
                     </h6>
                     <p className="text-dark fw-bold mb-1" style={{ fontSize: "1rem" }}>
@@ -92,7 +89,7 @@ const Home = () => {
                     </p>
                     <p className="text-muted small mb-3">{product.category}</p>
 
-                    <div className="mt-auto d-flex gap-2">
+                    <div className="mt-auto d-flex gap-2 justify-content-center">
                       <Link
                         to={`/product/${product.id}`}
                         className="btn btn-outline-primary btn-circle"
@@ -116,6 +113,14 @@ const Home = () => {
                       >
                         {favorites.includes(product.id) ? "❤️" : "🤍"}
                       </button>
+
+                      <Link
+                        to={`/editar/${product.id}`}
+                        className="btn btn-outline-warning btn-circle"
+                        title="Editar producto"
+                      >
+                        ✏️
+                      </Link>
                     </div>
                   </div>
                 </div>

@@ -52,7 +52,7 @@ const CreateProduct = () => {
               style={{ zIndex: 1055, animation: "fadeInUp 0.5s" }}
             >
               <div className="toast-body fw-semibold d-flex align-items-center gap-2">
-                ✅ <span>Producto agregado con éxito</span>
+                 <span>Producto agregado con éxito</span>
               </div>
             </div>
           )}
