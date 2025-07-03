@@ -13,6 +13,21 @@ Proyecto integrador grupal desarrollado para la materia Programación Visual.
 
 ## 🚀 Funcionalidades principales
 
+-  **Autenticación de usuario**
+  - Sistema de registro y login personalizado con formularios diseñados en Bootstrap
+  - Validación de datos en tiempo real: correo único, contraseñas coincidentes, campos requeridos
+  - Al iniciar sesión:
+                      - Se guarda la sesión en localStorage
+
+                      - Se actualiza el estado global con Redux
+
+                      - Se habilitan las rutas protegidas
+
+-  **Rutas protegidas con React Router + Redux**
+  - Implementación de componente <PrivateRoute /> para proteger el acceso a vistas sensibles
+  - Solo los usuarios logueados pueden acceder a Home, Favoritos, Crear producto, Editar y Cuenta
+  - Redirección automática al Login si no hay sesión activa
+
 -  **Página de Inicio (`Home`)**
   - Cards de productos con imagen, nombre, precio, descripción, categoría
   - Botón “Ver más detalles” y  para marcar como favorito
@@ -25,10 +40,6 @@ Proyecto integrador grupal desarrollado para la materia Programación Visual.
 - **Detalle del producto**
   - Información ampliada del producto (categoría, stock, etc.)
   - Botón para desmarcar de favoritos
-
-- **Consumo de API externa**
-  - Productos traídos mediante `fetch()` desde [FakeStoreAPI](https://fakestoreapi.com/)
-  - Se almacenan en el estado global para compartir entre vistas
  
 - **Crear y editar producto**
   - Formulario reutilizable (ProductForm) para alta y edición de productos
@@ -37,6 +48,10 @@ Proyecto integrador grupal desarrollado para la materia Programación Visual.
   - Ingreso de título, precio, descripción, categoría y selección visual de imagen
   - Actualización dinámica del estado global mediante Redux
   - Confirmación visual mediante toast al completar la acción
+ 
+- **Consumo de API externa**
+  - Productos traídos mediante `fetch()` desde [FakeStoreAPI](https://fakestoreapi.com/)
+  - Se almacenan en el estado global para compartir entre vistas
 
 ---
 
