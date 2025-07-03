@@ -1,13 +1,25 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../Store/userSlice';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
+import { Dropdown } from 'react-bootstrap';
 
 const Navbar = ({ onSearchChange }) => {
   const [inputValue, setInputValue] = useState("");
+  const usuario = useSelector((state) => state.user.usuario);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSearch = (e) => {
     e.preventDefault();
-    onSearchChange(inputValue); // Solo busca al presionar Enter o clic en 🔍
+    onSearchChange(inputValue);
+  };
+
+  const cerrarSesion = () => {
+    localStorage.removeItem("sessionUser");
+    dispatch(logout());
+    navigate("/login");
   };
 
   return (
@@ -16,13 +28,15 @@ const Navbar = ({ onSearchChange }) => {
       style={{ backgroundColor: "#4e73df" }}
     >
       <div className="container d-flex align-items-center justify-content-between">
-        
-       <Link to="/" className="navbar-brand d-flex align-items-center gap-2">
+
+        {/* Logo */}
+        <Link to="/" className="navbar-brand d-flex align-items-center gap-2">
           <span style={{ fontSize: '2rem' }}>🛍️</span>
           <span className="fw-bold" style={{ fontSize: '1.6rem', color: 'white' }}>Tienda</span>
-       </Link>
+        </Link>
 
-       <form
+        {/* Buscador */}
+        <form
           className="d-none d-md-flex flex-grow-1 mx-4"
           style={{ maxWidth: '600px' }}
           onSubmit={handleSearch}
@@ -47,13 +61,39 @@ const Navbar = ({ onSearchChange }) => {
           </div>
         </form>
 
-        <div className="d-flex align-items-center gap-4 fs-4">
-          <Link to="/create" title="Agregar nuevo producto" className="text-decoration-none" style={{ color: '#20c997' }}>➕</Link> 
-          <Link to="/login" title="Mi cuenta" className="text-decoration-none" style={{ color: '#fd7e14' }}>👤</Link> 
-          <Link to="/Favorites" title="Favoritos" className="text-decoration-none" style={{ color: '#dc3545' }}>❤️</Link> 
-          <Link to="/cart" title="Carrito" className="text-decoration-none" style={{ color: '#17a2b8' }}>🛒</Link> 
-        </div>
+        {/* Acciones */}
+        <div className="d-flex align-items-center gap-4 fs-5 text-white">
 
+          {/* Usuario */}
+          {usuario ? (
+            <Dropdown>
+              <Dropdown.Toggle variant="light" className="text-dark rounded-pill d-flex align-items-center gap-2">
+                👤 <span className="fw-semibold">{usuario.nombre || usuario.correo}</span>
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu align="end">
+                <Dropdown.Item disabled>📧 {usuario.correo}</Dropdown.Item>
+                <Dropdown.Item as={Link} to="/cuenta">⚙️ Administrar cuenta</Dropdown.Item>
+                <Dropdown.Item onClick={cerrarSesion}>🚪 Cerrar sesión</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          ) : (
+            <Link to="/login" title="Iniciar sesión" className="text-decoration-none" style={{ color: "white" }}>
+              👤
+            </Link>
+          )}
+
+          {/* Favoritos */}
+          <Link to="/Favorites" title="Favoritos" className="text-decoration-none" style={{ color: '#dc3545' }}>
+            ❤️
+          </Link>
+
+          {/* Agregar producto */}
+          <Link to="/create" title="Agregar producto" className="text-decoration-none" style={{ color: '#20c997' }}>
+            ➕
+          </Link>
+
+        </div>
       </div>
     </nav>
   );
