@@ -14,24 +14,29 @@ Proyecto integrador grupal desarrollado para la materia Programación Visual.
 ## 🚀 Funcionalidades principales
 
 -  **Autenticación de usuario**
-  - Sistema de registro y login personalizado con formularios diseñados en Bootstrap
-  - Validación de datos en tiempo real: correo único, contraseñas coincidentes, campos requeridos
-  - Al iniciar sesión:
-                      - Se guarda la sesión en localStorage
+  
+   - Sistema de registro y login personalizado con formularios diseñados en Bootstrap
+   - Validación de datos en tiempo real: correo único, contraseñas coincidentes, campos requeridos
+   -  Al iniciar sesión:
+ 
+                         - Se guarda la sesión en localStorage
 
-                      - Se actualiza el estado global con Redux
+                         - Se actualiza el estado global con Redux
 
-                      - Se habilitan las rutas protegidas
+                         - Se habilitan las rutas protegidas
+  
+
 
 -  **Rutas protegidas con React Router + Redux**
-  - Implementación de componente <PrivateRoute /> para proteger el acceso a vistas sensibles
-  - Solo los usuarios logueados pueden acceder a Home, Favoritos, Crear producto, Editar y Cuenta
-  - Redirección automática al Login si no hay sesión activa
+  
+     - Implementación de componente <PrivateRoute /> para proteger el acceso a vistas sensibles
+     - Solo los usuarios logueados pueden acceder a Home, Favoritos, Crear producto, Editar y Cuenta
+     - Redirección automática al Login si no hay sesión activa
 
 -  **Página de Inicio (`Home`)**
-  - Cards de productos con imagen, nombre, precio, descripción, categoría
-  - Botón “Ver más detalles” y  para marcar como favorito
-  - Búsqueda en tiempo real y ordenamiento por precio
+    - Cards de productos con imagen, nombre, precio, descripción, categoría
+    - Botón “Ver más detalles” y  para marcar como favorito
+    - Búsqueda en tiempo real y ordenamiento por precio
 
 - **Favoritos**
   - Sistema de favoritos usando **Redux** 
@@ -61,6 +66,7 @@ Proyecto integrador grupal desarrollado para la materia Programación Visual.
 - [Vite](https://vitejs.dev/)
 - [Redux](https://redux.js.org/)
 - [Bootstrap 5](https://getbootstrap.com/)
+- React Bootstrap 
 - Context API
 - `fetch()` — para consumo de API externa
 - [React Router DOM](https://reactrouter.com/)
