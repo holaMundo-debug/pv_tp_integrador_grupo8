@@ -13,7 +13,7 @@ const Home = () => {
     if (products.length === 0) {
       dispatch(fetchProducts());
     }
-  }, [dispatch, products.length]);
+  }, [dispatch, products.length]);1
 
   const [sortOption, setSortOption] = useState("relevante");
   const [searchTerm, setSearchTerm] = useState("");
