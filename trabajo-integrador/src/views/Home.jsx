@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Navbar from "../components/NavBar";
 import { toggleFavorite, fetchProducts } from "../Store/productsSlice"; 
 import "bootstrap/dist/css/bootstrap.min.css";
+import Footer from "./Footer";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ const Home = () => {
     if (products.length === 0) {
       dispatch(fetchProducts());
     }
-  }, [dispatch, products.length]);1
+  }, [dispatch, products.length]);
 
   const [sortOption, setSortOption] = useState("relevante");
   const [searchTerm, setSearchTerm] = useState("");
@@ -29,10 +30,10 @@ const Home = () => {
   });
 
   return (
-    <>
+    <div className="d-flex flex-column min-vh-100">
       <Navbar onSearchChange={setSearchTerm} />
 
-      <div className="container mt-4">
+      <div className="container mt-4 mb-0 pb-0 flex-grow-1 d-flex flex-column">
         <div className="row justify-content-start mb-4">
           <div className="col-md-4">
             <div className="card shadow-sm border-0 p-3 d-flex align-items-center flex-row gap-3">
@@ -59,7 +60,7 @@ const Home = () => {
             </div>
           ) : sortedProducts.length === 0 ? (
             <div className="col-12">
-              <p className="text-center text-muted fs-5">
+              <p className="text-center text-muted fs-5 py-5">
                 ❌ No se encontraron productos que coincidan con tu búsqueda.
               </p>
             </div>
@@ -128,8 +129,12 @@ const Home = () => {
             ))
           )}
         </div>
+
+        {sortedProducts.length > 0 && <div className="my-5"></div>}
       </div>
-    </>
+
+      <Footer />
+    </div>
   );
 };
 

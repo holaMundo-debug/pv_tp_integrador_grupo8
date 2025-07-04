@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { updateProduct } from "../Store/productsSlice";
 import ProductForm from "../components/ProductForm";
 import Navbar from "../components/NavBar";
+import Footer from "./Footer";            
 
 const EditProduct = () => {
   const { id } = useParams();
@@ -24,7 +25,13 @@ const EditProduct = () => {
   }, [product, navigate]);
 
   const handleUpdate = (updatedData) => {
-    dispatch(updateProduct({ ...updatedData, id: Number(id),price: Number(updatedData.price) }));
+    dispatch(
+      updateProduct({
+        ...updatedData,
+        id: Number(id),
+        price: Number(updatedData.price),
+      })
+    );
     setShowToast(true);
     setTimeout(() => navigate("/"), 1800);
   };
@@ -49,12 +56,15 @@ const EditProduct = () => {
               style={{ zIndex: 1055 }}
             >
               <div className="toast-body fw-semibold">
-                 Producto actualizado con éxito
+                Producto actualizado con éxito
               </div>
             </div>
           )}
         </div>
       </div>
+
+      <div className="my-5"></div> 
+      <Footer />                   
     </>
   );
 };

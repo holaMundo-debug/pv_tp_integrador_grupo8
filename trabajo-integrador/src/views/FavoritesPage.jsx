@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/NavBar";
+import Footer from "./Footer"; 
 import { toggleFavorite } from "../Store/productsSlice"; 
 
 const FavoritesPage = () => {
@@ -16,14 +17,19 @@ const FavoritesPage = () => {
   const [hoveredId, setHoveredId] = useState(null);
 
   return (
-    <>
+    <div className="d-flex flex-column min-vh-100">
       <Navbar />
-      <div className="container mt-4">
+
+      <div className="container mt-4 flex-grow-1">
         <h3>Productos Favoritos</h3>
 
         <div className="row g-3">
           {favoriteProducts.length === 0 ? (
-            <p>No hay productos favoritos.</p>
+            <div className="col-12 text-center py-5">
+              <p className="fs-5 text-muted">
+                😢 No hay productos favoritos
+              </p>
+            </div>
           ) : (
             favoriteProducts.map((product) => {
               const isFavorite = favorites.includes(product.id); // Saber si está en favoritos
@@ -100,7 +106,10 @@ const FavoritesPage = () => {
           )}
         </div>
       </div>
-    </>
+
+      {favoriteProducts.length > 0 && <div className="my-5"></div>} 
+      <Footer />
+    </div>
   );
 };
 
