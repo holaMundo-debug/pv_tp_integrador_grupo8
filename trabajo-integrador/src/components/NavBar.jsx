@@ -25,7 +25,7 @@ const Navbar = ({ onSearchChange }) => {
   return (
     <nav
       className="navbar navbar-expand-lg border-bottom shadow-sm py-3"
-      style={{ backgroundColor: "#4e73df" }}
+      style={{ backgroundColor: "#6a11cb" }}
     >
       <div className="container d-flex align-items-center justify-content-between">
 
@@ -62,12 +62,15 @@ const Navbar = ({ onSearchChange }) => {
         </form>
 
         {/* Acciones */}
-        <div className="d-flex align-items-center gap-4 fs-5 text-white">
+        <div className="d-flex align-items-center gap-4 fs-5">
 
           {/* Usuario */}
           {usuario ? (
             <Dropdown>
-              <Dropdown.Toggle variant="light" className="text-dark rounded-pill d-flex align-items-center gap-2">
+              <Dropdown.Toggle
+                variant="light"
+                className="text-dark rounded-pill d-flex align-items-center gap-2"
+              >
                 👤 <span className="fw-semibold">{usuario.nombre || usuario.correo}</span>
               </Dropdown.Toggle>
 
@@ -78,21 +81,35 @@ const Navbar = ({ onSearchChange }) => {
               </Dropdown.Menu>
             </Dropdown>
           ) : (
-            <Link to="/login" title="Iniciar sesión" className="text-decoration-none" style={{ color: "white" }}>
+            <Link
+              to="/login"
+              title="Iniciar sesión"
+              className="text-decoration-none"
+              style={{ color: "white" }}
+            >
               👤
             </Link>
           )}
 
           {/* Favoritos */}
-          <Link to="/Favorites" title="Favoritos" className="text-decoration-none" style={{ color: '#dc3545' }}>
+          <Link
+            to="/Favorites"
+            title="Favoritos"
+            className="text-decoration-none"
+            style={{ color: "white" }}
+          >
             ❤️
           </Link>
 
           {/* Agregar producto */}
-          <Link to="/create" title="Agregar producto" className="text-decoration-none" style={{ color: '#20c997' }}>
+          <Link
+            to="/create"
+            title="Agregar producto"
+            className="text-decoration-none"
+            style={{ color: "white" }}
+          >
             ➕
           </Link>
-
         </div>
       </div>
     </nav>
