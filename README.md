@@ -11,22 +11,23 @@
 
 Proyecto integrador grupal desarrollado para la materia Programación Visual.
 
+
+## 🚀 Funcionalidades principales
+
 -  **Dependencias**
 
 Antes de poder probar nuestro proyecto revisa/instala las dependencias.
 Ve a la terminal,antes asegurate de estar en la carpeta trabajo-integrador,coloca esto para instalar
 las dependencias:
-npm install
-npm install react-router-dom
-npm install redux
-npm install react-redux
-npm install @reduxjs/toolkit
-npm install bootstrap
-npm install react-bootstrap
+    -  npm install
+    -  npm install react-router-dom
+    -  npm install redux
+    -  npm install react-redux
+    -  npm install @reduxjs/toolkit
+    -  npm install bootstrap
+    -  npm install react-bootstrap
 Listo ahora puedes probar la nuestra pagina web con:
-npm run dev
-
-## 🚀 Funcionalidades principales
+    -  npm run dev
 
 -  **Autenticación de usuario**
   
